@@ -3,8 +3,9 @@ const int num = 4;
 VarSpeedServo servos[num];  
 char rec[num]={};
 int pins[num] = {13,12,11,10};
-int angs[num] = {60,60,60,60};
-boolean aux[num]={};   
+int angs[num] = {60,60,60,60}; 
+boolean aux;   
+boolean aux1;   
 
 
 void setup() {
@@ -21,6 +22,7 @@ void setup() {
 
 void loop() {
 
+ 
   comunica();
     
   }

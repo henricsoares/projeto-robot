@@ -1,8 +1,10 @@
 void comunica(){
 
+  aux = true;
+  aux1 = true;
   while(!Serial.available()){
 
-    Serial.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para informar posições atuais:");  
+    Serial.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para controlar servos individualmente, 'd' para posições atuais:");  
     delay(1500);   
     }
   
@@ -20,7 +22,7 @@ void comunica(){
       
         case('a'):
       
-          Serial.println("autotestex'");
+          Serial.println("auto-teste");
           testa();
           
         
@@ -39,6 +41,12 @@ void comunica(){
         break;
 
         case('c'):
+
+          controla();
+
+        break;
+
+        case('d'):
       
           Serial.print(angs[0]);
           Serial.print(", ");
@@ -85,6 +93,192 @@ void goservo(){
   Serial.print(angs[3]);
   Serial.println(";");
 }
+
+
+
+void controla(){
+  
+            aux = false;  
+          while(!aux){
+
+            Serial.println("Digite '1' para servo 1 e etc, 'x' para sair");
+            while(!Serial.available()){}
+            
+            char getdata = Serial.read();
+            switch (getdata){
+
+              case('1'):
+                
+                 
+                aux1 = false;
+                while(!aux1){
+                  Serial.println("Controlando servo 1: aperte 'cima' para avançar, 'baixo' para recuar,'x' para sair");
+                  while(!Serial.available()){}
+                  char getdata1 = Serial.read();
+                  switch(getdata1){
+
+                    case('a'):
+                    angs[0] = angs[0]+10;
+                    angs[0] = constrain(angs[0],45,115);
+                    Serial.println(angs[0]);
+                    servos[0].write(angs[0],50,false);
+                    
+                    break;
+
+                    case('d'):
+                    angs[0] = angs[0]-10;
+                    angs[0] = constrain(angs[0],45,115);
+                    Serial.println(angs[0]);
+                    servos[0].write(angs[0],50,false);
+                    break;
+
+                    case('x'):
+                    aux1 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              break;
+
+              case('2'):
+
+              aux1 = false;
+                while(!aux1){
+                  Serial.println("Controlando servo 2: aperte 'cima' para avançar, 'baixo' para recuar,'x' para sair");
+                  while(!Serial.available()){}
+                  char getdata1 = Serial.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[1] = angs[1]+10;
+                    angs[1] = constrain(angs[1],45,115);
+                    Serial.println(angs[1]);
+                    servos[1].write(angs[1],50,false);
+                    
+                    break;
+
+                    case('d'):
+                    angs[1] = angs[1]-10;
+                    angs[1] = constrain(angs[1],45,115);
+                    Serial.println(angs[1]);
+                    servos[1].write(angs[1],50,false);
+                    break;
+
+                    case('x'):
+                    aux1 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              
+              break;
+
+              case('3'):
+
+              aux1 = false;
+                while(!aux1){
+                  Serial.println("Controlando servo 3: aperte 'cima' para avançar, 'baixo' para recuar,'x' para sair");
+                  while(!Serial.available()){}
+                  char getdata1 = Serial.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[2] = angs[2]+10;
+                    angs[2] = constrain(angs[2],45,115);
+                    Serial.println(angs[2]);
+                    servos[2].write(angs[2],50,false);
+                    
+                    break;
+
+                    case('d'):
+                    angs[2] = angs[2]-10;
+                    angs[2] = constrain(angs[2],45,115);
+                    Serial.println(angs[2]);
+                    servos[2].write(angs[2],50,false);
+                    break;
+
+                    case('x'):
+                    aux1 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              
+              break;
+
+              case('4'):
+
+              aux1 = false;
+              while(!aux1){
+                  Serial.println("Controlando servo 4: aperte 'cima' para avançar, 'baixo' para recuar,'x' para sair");
+                  while(!Serial.available()){}
+                  char getdata1 = Serial.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[3] = angs[3]+10;
+                    angs[3] = constrain(angs[3],45,115);
+                    Serial.println(angs[3]);
+                    servos[3].write(angs[3],50,false);
+                    
+                    break;
+
+                    case('d'):
+                    angs[3] = angs[3]-10;
+                    angs[3] = constrain(angs[3],45,115);
+                    Serial.println(angs[3]);
+                    servos[3].write(angs[3],50,false);
+                    break;
+
+                    case('x'):
+                    aux1 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+
+              
+              break;
+
+              case('x'):
+              aux = true;
+              break;
+
+              default:
+              break;
+              }
+    
+
+            
+            
+            }
+          
+      
+  
+  
+  
+  }
 
 
 
