@@ -14,32 +14,38 @@ void comunica(){
     
     char received = Serial.read();
 
-    //if(Serial.available()){
+    
       
       
       
-      switch(received){
+    switch(received){
       
-        case('a'):
+      case('a'):
       
+<<<<<<< HEAD
           Serial.println("auto-teste");
           testa();
+=======
+        Serial.println("autotestex'");
+        testa();
+>>>>>>> 7bbf8a7f4d753c0718bc39e8479fbc8e9eb7fdf9
           
         
-        break;
+      break;
       
-        case('b'):
+      case('b'):
 
-          delay(1000);
-          for(int i = 0; i<num; ++i){
+        delay(1000);
+        for(int i = 0; i<num; ++i){
             
-            angs[i] = Serial.parseInt();
-            Serial.println(angs[i]);
+          angs[i] = Serial.parseInt();
+          Serial.println(angs[i]);
                 
-            }
-          goservo();  
-        break;
+          }
+        goservo();  
+      break;
 
+<<<<<<< HEAD
         case('c'):
 
           controla();
@@ -47,23 +53,26 @@ void comunica(){
         break;
 
         case('d'):
+=======
+      case('c'):
+>>>>>>> 7bbf8a7f4d753c0718bc39e8479fbc8e9eb7fdf9
       
-          Serial.print(angs[0]);
-          Serial.print(", ");
-          Serial.print(angs[1]);
-          Serial.print(", ");
-          Serial.print(angs[2]);
-          Serial.print(", ");
-          Serial.print(angs[3]);
-          Serial.println(";");
+        Serial.print(angs[0]);
+        Serial.print(", ");
+        Serial.print(angs[1]);
+        Serial.print(", ");
+        Serial.print(angs[2]);
+        Serial.print(", ");
+        Serial.print(angs[3]);
+        Serial.println(";");
           
       
-        break;
+      break;
 
-        default:
-        break;
-        }
-      //}
+      default:
+      break;
+      }
+      
     }
   }
 
