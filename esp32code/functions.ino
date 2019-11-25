@@ -2,6 +2,7 @@ void carro(){
   while(!aux1[0]){
     LimparBuffer();
     SerialBT.println("Digite 'a' para mover-se para frente, 'b' para esquerda, 'c' para direita, 'd' para parar, 'x' para sair:");
+    
     while(!SerialBT.available()){}
     if(SerialBT.available()){
       for(int i =0;i<num;++i){
@@ -22,7 +23,7 @@ void braco(){
   while(!aux1[0]){
     LimparBuffer();
     
-    SerialBT.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para informar posições atuais, 'x' para sair:");
+    SerialBT.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para controlar servos individualmente, 'd' para posições atuais, 'x' para sair:");
     
     while(!SerialBT.available()){}
     if(SerialBT.available()){
@@ -49,7 +50,7 @@ void comunica1(){
   switch(received){
     case('a'):
     myserial.println('a');
-    //SerialBT.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para informar posições atuais, 'd' para sair:");
+    SerialBT.println("auto-teste");
     aux1[1]=true;
     break;
       
@@ -102,7 +103,7 @@ void comunica1(){
         SerialBT.print(", ");
         SerialBT.print(angs[3]);
         SerialBT.println(";");
-        //SerialBT.println("Digite 'a' para autoteste, 'b' para programar os servos, 'c' para informar posições atuais, 'd' para sair:");
+        
         myserial.println('b');
         myserial.println(angs[0]);
         myserial.println(angs[1]);
@@ -113,6 +114,14 @@ void comunica1(){
     break;
 
     case('c'):
+        myserial.println('c');
+        aux2 = true;
+        aux3 = true;
+        controla();
+        aux1[1]=true;
+    break;
+
+    case('d'):
 
       
       SerialBT.print(angs[0]);
@@ -212,6 +221,212 @@ void comunica2(){
     default:
     break;
     }
+  
+  
+  }
+
+
+
+void controla(){
+  
+          aux2 = false;  
+          while(!aux2){
+
+            Serial.println("Digite '1' para servo 1 e etc, 'x' para sair");
+            SerialBT.println("Digite '1' para servo 1 e etc, 'x' para sair");
+            while(!SerialBT.available()){}
+            
+            char getdata = SerialBT.read();
+            switch (getdata){
+
+              case('1'):
+                
+                myserial.println('1'); 
+                aux3 = false;
+                while(!aux3){
+                  SerialBT.println("Controlando servo 1: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  Serial.println("Controlando servo 1: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  while(!SerialBT.available()){}
+                  char getdata1 = SerialBT.read();
+                  switch(getdata1){
+
+                    case('a'):
+                    angs[0] = angs[0]+10;
+                    angs[0] = constrain(angs[0],45,115);
+                    Serial.println(angs[0]);
+                    SerialBT.println(angs[0]);
+                    
+                    myserial.println('a');
+                    
+                    break;
+
+                    case('d'):
+                    angs[0] = angs[0]-10;
+                    angs[0] = constrain(angs[0],45,115);
+                    Serial.println(angs[0]);
+                    SerialBT.println(angs[0]);
+                    myserial.println('d');
+                    break;
+
+                    case('x'):
+                    myserial.println('x');
+                    aux3 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              break;
+
+              case('2'):
+              myserial.println('2');
+              aux3 = false;
+                while(!aux3){
+                  Serial.println("Controlando servo 2: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  SerialBT.println("Controlando servo 2: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  while(!SerialBT.available()){}
+                  char getdata1 = SerialBT.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[1] = angs[1]+10;
+                    angs[1] = constrain(angs[1],45,115);
+                    Serial.println(angs[1]);
+                    SerialBT.println(angs[1]);
+                    myserial.println('a');
+                    
+                    break;
+
+                    case('d'):
+                    angs[1] = angs[1]-10;
+                    angs[1] = constrain(angs[1],45,115);
+                    Serial.println(angs[1]);
+                    SerialBT.println(angs[1]);
+                    myserial.println('d');
+                    break;
+
+                    case('x'):
+                    myserial.println('x');
+                    aux3 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              
+              break;
+
+              case('3'):
+              myserial.println('3');
+              aux3 = false;
+                while(!aux3){
+                  Serial.println("Controlando servo 3: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  SerialBT.println("Controlando servo 3: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  while(!SerialBT.available()){}
+                  char getdata1 = SerialBT.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[2] = angs[2]+10;
+                    angs[2] = constrain(angs[2],45,115);
+                    Serial.println(angs[2]);
+                    SerialBT.println(angs[2]);
+                    myserial.println('a');
+                    
+                    break;
+
+                    case('d'):
+                    angs[2] = angs[2]-10;
+                    angs[2] = constrain(angs[2],45,115);
+                    Serial.println(angs[2]);
+                    SerialBT.println(angs[2]);
+                    myserial.println('d');
+                    break;
+
+                    case('x'):
+                    myserial.println('x');
+                    aux3 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+              
+              break;
+
+              case('4'):
+
+              myserial.println('4');
+              aux3 = false;
+              while(!aux3){
+                  Serial.println("Controlando servo 4: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  SerialBT.println("Controlando servo 4: aperte 'cima' para avançar, 'baixo' para recuar, 'x' para sair");
+                  while(!SerialBT.available()){}
+                  char getdata1 = SerialBT.read();
+                  switch(getdata1){
+                    case('a'):
+                    angs[3] = angs[3]+10;
+                    angs[3] = constrain(angs[3],45,115);
+                    Serial.println(angs[3]);
+                    SerialBT.println(angs[3]);
+                    myserial.println('a');
+                    
+                    break;
+
+                    case('d'):
+                    angs[3] = angs[3]-10;
+                    angs[3] = constrain(angs[3],45,115);
+                    Serial.println(angs[3]);
+                    SerialBT.println(angs[3]);
+                    myserial.println('d');
+                    break;
+
+                    case('x'):
+                    myserial.println('x');
+                    aux3 = true;
+                    break;
+
+                    default:
+                    break;
+                    
+                    }
+                  
+                  
+                  
+                  }
+
+              
+              break;
+
+              case('x'):
+              aux2 = true;
+              myserial.println('x');
+              break;
+
+              default:
+              break;
+              }
+    
+
+            
+            
+            }
+          
+      
+  
   
   
   }

@@ -12,6 +12,8 @@ const int num = 4;
 int angs[num] = {60,60,60,60};
 boolean aux[num]={};
 boolean aux1[num]={}; 
+boolean aux2;
+boolean aux3;
 
 char btread[2] = {};
 
@@ -30,6 +32,7 @@ const int resol = 8;
 void setup() {
 
   SerialBT.begin("Robot");
+  Serial.begin(9600);
   myserial.begin(9600, SERIAL_8N1, 16, 17);
 
   pinMode(motor1a, OUTPUT);
@@ -58,6 +61,7 @@ void loop() {
   
   while(!SerialBT.available()){
     SerialBT.println("Digite 'a' para controlar o veículo, ou 'b' para controlar o braço:");
+    Serial.println("Digite 'a' para controlar o veículo, ou 'b' para controlar o braço:");
     delay(1500);
     }
 
